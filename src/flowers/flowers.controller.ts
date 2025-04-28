@@ -1,12 +1,35 @@
-import { Controller, Get } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  UseGuards,
+  UseInterceptors,
+  UsePipes, ValidationPipe
+} from "@nestjs/common";
 import { FlowersService } from './flowers.service';
+import { MyValidationPipe } from '../conception/pipe';
+import { AuthGuard } from '../conception/guard';
+import { LoggerInterceptor } from '../conception/interceptor';
+import { CreateFLowersDto } from './flowers.dto';
 
 @Controller('flowers')
+@UseInterceptors(LoggerInterceptor)
 export class FlowersController {
   constructor(private readonly flowersService: FlowersService) {}
 
   @Get()
-  findAll() {
-    return this.flowersService.findAll(); 
+  @UseGuards(AuthGuard)
+  findAll(@Query('pageNumber', MyValidationPipe) pageNumber: number) {
+    console.log(pageNumber);
+    return this.flowersService.findAll();
+  }
+
+  @Post()
+  @UseGuards(AuthGuard)
+  @UsePipes(new ValidationPipe())
+  create(@Body() dto: CreateFLowersDto) {
+    return this.flowersService.create(dto);
   }
 }
