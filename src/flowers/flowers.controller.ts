@@ -6,8 +6,9 @@ import {
   Query,
   UseGuards,
   UseInterceptors,
-  UsePipes, ValidationPipe
-} from "@nestjs/common";
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { FlowersService } from './flowers.service';
 import { MyValidationPipe } from '../conception/pipe';
 import { AuthGuard } from '../conception/guard';
@@ -31,5 +32,10 @@ export class FlowersController {
   @UsePipes(new ValidationPipe())
   create(@Body() dto: CreateFLowersDto) {
     return this.flowersService.create(dto);
+  }
+
+  @Get('new-order')
+  newOrder(){
+
   }
 }
