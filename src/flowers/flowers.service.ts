@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Flower } from '../../generated/prisma';
 import { PrismaService } from '../prisma.service';
 import { CreateFLowersDto } from './flowers.dto';
 import { ConfigService } from '@nestjs/config';
-import { EnumAppMode } from "../types";
+import { EnumAppMode } from '../types';
 
 @Injectable()
 export class FlowersService {

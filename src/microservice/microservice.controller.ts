@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MicroserviceService } from './microservice.service';
-import { EventPattern } from "@nestjs/microservices";
+import { EventPattern } from '@nestjs/microservices';
 
 @Controller()
 export class MicroserviceController {

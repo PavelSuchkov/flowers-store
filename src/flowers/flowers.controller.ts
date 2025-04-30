@@ -35,7 +35,8 @@ export class FlowersController {
   }
 
   @Get('new-order')
-  newOrder(){
-
+  newOrder() {
+    console.log('newOrder was called');
+    // return this.flowersService.findAll();
   }
 }
